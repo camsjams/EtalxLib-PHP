@@ -1,0 +1,3 @@
+[submodule "jwage"]
+	path = jwage
+	url = https://gist.github.com/221634.git
