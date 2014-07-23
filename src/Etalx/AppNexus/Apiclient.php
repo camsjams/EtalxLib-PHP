@@ -1,11 +1,19 @@
 <?php
-class CurlWrapper {
+class Apiclient {
+	
+	private $_curl = null;
+	
+	private	$_apiUrl = "http://api-console.client-testing.adnxs.net";
+	
+	private	$_apiUsername = "YOUR_USERNAME_HERE";
+
+	private	$_apiPassword = "YOUR_PASSWORD_HERE";
+
+	private $_config = null;
 	
 	public function __construct() {
 		global $thund;
 		//Thunderhorse::debug('[AppnexusComponent] __construct');
-		$this->_config = $thund->config['advertisements'];
-		//Thunderhorse::debug($this->_config);
 		$this->_createCurlClient();
 	}
 	

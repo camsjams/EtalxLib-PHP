@@ -1,6 +1,8 @@
 <?php
+namespace Etalx\AppNexus;
+use \Etalx\Common\Thunderhorse as Thunderhorse;
 
-class AppnexusComponent {
+class Creative {
 	
 	private $_curl = null;
 	
@@ -13,10 +15,9 @@ class AppnexusComponent {
 	private $_config = null;
 	
 	public function __construct() {
-		global $thund;
-		//Thunderhorse::debug('[AppnexusComponent] __construct');
-		$this->_config = $thund->config['advertisements'];
-		//Thunderhorse::debug($this->_config);
+		Thunderhorse::debug('[Creative] __construct');
+		$this->_config = array();
+		Thunderhorse::debug($this->_config);
 		$this->_createCurlClient();
 	}
 	
@@ -65,7 +66,7 @@ class AppnexusComponent {
 	}
 	
 	private function _createCurlClient() {
-		//Thunderhorse::debug('[AppnexusComponent] _createCurlClient');
+		//Thunderhorse::debug('[Creative] _createCurlClient');
 		$this->_curl = curl_init();
 		curl_setopt($this->_curl, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($this->_curl, CURLOPT_COOKIEFILE, "cookies.txt");
@@ -82,12 +83,12 @@ class AppnexusComponent {
 	}
 	
 	private function _destroyCurlClient() {
-		//Thunderhorse::debug('[AppnexusComponent] _destroyCurlClient');
+		//Thunderhorse::debug('[Creative] _destroyCurlClient');
 		curl_close($this->_curl);
 	}
 	
 	private function _doCurlPost($url = null, $fields = null) {
-		//Thunderhorse::debug('[AppnexusComponent] _doCurlPost');
+		//Thunderhorse::debug('[Creative] _doCurlPost');
 		if(isset($url) && isset($fields)) {
 			$url = $this->_apiUrl . $url;
 			//Thunderhorse::debug($url);
@@ -103,12 +104,12 @@ class AppnexusComponent {
 			}
 			return $response;
 		} else {
-			//Thunderhorse::debug('[AppnexusComponent] _doCurlPost bad data');
+			//Thunderhorse::debug('[Creative] _doCurlPost bad data');
 		}
 	}
 	
 	private function _doCurlPut($url = null, $fields = null) {
-		//Thunderhorse::debug('[AppnexusComponent] _doCurlPut');
+		//Thunderhorse::debug('[Creative] _doCurlPut');
 		if(isset($url) && isset($fields)) {
 			$url = $this->_apiUrl . $url;
 			//Thunderhorse::debug($url);
@@ -124,7 +125,7 @@ class AppnexusComponent {
 			}
 			return $response;
 		} else {
-			//Thunderhorse::debug('[AppnexusComponent] _doCurlPost bad data');
+			//Thunderhorse::debug('[Creative] _doCurlPost bad data');
 		}
 	}
 }
